@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Audirt</string>
+    <string name="app_id">237888296378187</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="menu_guardar">Guardar</string>
+    <string name="menu_nuevo">Nuevo</string>
+    <string name="tab_1">Tab 1</string>
+    <string name="tab_2">Tab 2</string>
+
+    <!-- SignIn/LogIn -->
+    <string name="str_email">Correo electrónico o teléfono</string>
+    <string name="str_pwd">Contraseña</string>
+    <string name="str_pwdconf">Password Confimation</string>
+    <string name="str_signup">Sign Up</string>
+    <string name="str_acceder">Acceder</string>
+    <string name="str_alta">Darse de alta</string>
+    <string name="access_token">CAACEdEose0cBALZB6IOnzN8TZAcG3RgJ4kZCrAaNetwrg5GETSBTbG7qvMffRUJ12BZCNq6vG3RTr1L6AZBFVY2tZBDIkWnZAFZBKVSFgwZBhTee7bD3ZBiAdJ43RoYrKS9iepU4JQ9IQXzIkAdBGSdD1aLfvsZCXWTOTsZD</string>
+
+    <string-array name="planets_array">
+        <item>Opcion 1</item>
+        <item>Opcion 2</item>
+        <item>Opcion 3</item>
+        <item>Opcion 4</item>
+        <item>Opcion 5</item>
+    </string-array>
+
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+    <string name="action_websearch">Web search</string>
+    <string name="app_not_available">Sorry, there\'s no web browser available</string>
+
+    <!-- Strings FACEBOOK -->
+    <string name="login_using_activity">Login using Activity</string>
+    <string name="login_using_custom_fragment">Login using Custom Fragment</string>
+    <string name="login_using_usersettingsfragment">Login using UserSettingsFragment</string>
+    <string name="hello">Hello World, SessionLoginSampleActivity!</string>
+    <string name="login">Login</string>
+    <string name="instructions">Login to create a link to fetch account data</string>
+    <string name="logout">Log out</string>
+    <string name="applicationId">380615018626574</string>
+    <string name="get_started">To get started, login using Facebook</string>
+    <string name="skip_login">Skip Login</string>
+    <string name="settings">Settings</string>
+    <string name="action_settings">Settings</string>
+
+</resources>
