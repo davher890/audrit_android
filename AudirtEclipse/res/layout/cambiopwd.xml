@@ -64,7 +64,7 @@
                 android:textSize="20sp" />
 
             <EditText
-                android:id="@+id/editAntigua"
+                android:id="@+id/editNombre"
                 android:layout_width="match_parent"
                 android:layout_column="0"
                 android:layout_row="4"

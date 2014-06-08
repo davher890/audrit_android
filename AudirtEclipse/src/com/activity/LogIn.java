@@ -34,12 +34,14 @@ public class LogIn extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
         
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+        
         this.c = this;
 
         bsign   = (ImageButton)findViewById(R.id.buttonSign);
         bregistro   = (ImageButton)findViewById(R.id.buttonRegistro);
         bpwd   	= (ImageButton)findViewById(R.id.buttonPwd);
-        email   = (EditText)findViewById(R.id.editAntigua);
+        email   = (EditText)findViewById(R.id.editNombre);
         pwd     = (EditText)findViewById(R.id.editText2);
 
         bsign.setOnClickListener(new View.OnClickListener() {
@@ -59,7 +61,7 @@ public class LogIn extends Activity {
 				}
                 
                 AudirtService aus = new AudirtService("http://audirt.herokuapp.com/api/token",c, json);
-		        aus.execute();            	
+		        aus.execute();
             }
         });
 
@@ -67,8 +69,22 @@ public class LogIn extends Activity {
 
             public void onClick(View v) {
 
-                Intent i = new Intent(LogIn.this, RegistroActivity.class);
-                startActivityForResult(i, 1);
+            	if (Token.getToken() == null){
+            		final AlertDialog alertDialog = new AlertDialog.Builder(c).create();
+            		alertDialog.setTitle("Debe iniciar sesión");
+            		alertDialog.setButton(RESULT_OK, "Aceptar", new DialogInterface.OnClickListener() {    				
+	    				@Override
+	    				public void onClick(DialogInterface dialog, int which) {
+	    					// TODO Auto-generated method stub		
+	    					alertDialog.cancel();
+	    				}
+            		});
+            		alertDialog.show();
+            	}
+            	else{
+	                Intent i = new Intent(LogIn.this, RegistroActivity.class);
+	                startActivityForResult(i, 1);
+            	}
             }
         });
         
@@ -76,12 +92,24 @@ public class LogIn extends Activity {
         	
 			public void onClick(View v) {
 				
-				Intent i = new Intent(LogIn.this, PwdActivity.class);
-                startActivityForResult(i, 1);
+				if (Token.getToken() == null){
+            		final AlertDialog alertDialog = new AlertDialog.Builder(c).create();
+            		alertDialog.setTitle("Debe iniciar sesión");
+            		alertDialog.setButton(RESULT_OK, "Aceptar", new DialogInterface.OnClickListener() {    				
+	    				@Override
+	    				public void onClick(DialogInterface dialog, int which) {
+	    					// TODO Auto-generated method stub		
+	    					alertDialog.cancel();
+	    				}
+            		});
+            		alertDialog.show();
+            	}
+            	else{
+					Intent i = new Intent(LogIn.this, PwdActivity.class);
+	                startActivityForResult(i, 1);
+            	}
 			}
 		});
-        
-        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
     }
     
     public void gestionaWS(String json){

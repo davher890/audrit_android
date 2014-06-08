@@ -18,6 +18,7 @@ import android.os.AsyncTask;
 import com.activity.InscodeActivity;
 import com.activity.LogIn;
 import com.activity.PwdActivity;
+import com.activity.RegistroActivity;
 
 /**
  * Created by david on 17/06/13.
@@ -28,6 +29,7 @@ public class AudirtService extends AsyncTask<String, Context, String> {
     private LogIn log = null;
     private InscodeActivity ins = null;
     private PwdActivity pwd = null;
+    private RegistroActivity reg = null;
     private Context c = null;
     private String url;
     private JSONObject json;
@@ -50,6 +52,13 @@ public class AudirtService extends AsyncTask<String, Context, String> {
         this.url = url;
         this.json = json;
         this.pwd = c;
+        this.c = (Context) c;
+    }
+    
+    public AudirtService(String url, RegistroActivity c, JSONObject json){
+        this.url = url;
+        this.json = json;
+        this.reg = c;
         this.c = (Context) c;
     }
 

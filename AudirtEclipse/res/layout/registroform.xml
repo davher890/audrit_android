@@ -83,7 +83,7 @@
                 android:textSize="20sp" />
 
             <EditText
-                android:id="@+id/editAntigua"
+                android:id="@+id/editNombre"
                 android:layout_column="0"
                 android:layout_columnSpan="3"
                 android:layout_gravity="fill_horizontal"
@@ -123,7 +123,7 @@
                 android:textSize="20sp" />
 
             <EditText
-                android:id="@+id/EditNueva"
+                android:id="@+id/Edit2Apellido"
                 android:layout_column="0"
                 android:layout_columnSpan="3"
                 android:layout_gravity="fill_horizontal"

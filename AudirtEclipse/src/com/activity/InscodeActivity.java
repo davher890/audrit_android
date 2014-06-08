@@ -1,10 +1,5 @@
 package com.activity;
 
-import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -13,18 +8,13 @@ import android.app.AlertDialog;
 import android.audirt.AudirtService;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.audirt.R;
@@ -377,7 +367,7 @@ public class InscodeActivity extends Activity implements OnTouchListener {
 	        		}
 	        	};
 	        	timer.start();
-	        	RetreiveFeedTask aus = new RetreiveFeedTask(imagen);
+	        	RetreiveFeedTask aus = new RetreiveFeedTask(c, imagen);
 	        	aus.execute();
 	        }
 		} catch (JSONException e) {
@@ -394,69 +384,6 @@ public class InscodeActivity extends Activity implements OnTouchListener {
 			alertDialog.show();
 		}
     }
-	
-	/*La mecánica de votación sería la siguiente:
-
-		1.- introducción de código, que se mostrará en la ventana principal.
-		2.- si se pulsara el botón enviar, 
-		el código cambiaría de color hasta que se recibiera la conformidad de llegada del servidor, 
-		con un mínimo de cinco segundos para que el usuario pueda comprobar que ha hecho el envío.
-		
-		3.- si el código fuera incorrecto (no estuviera activo) 
-		se guardaría en el servidor y al usuario se le notificaría con una vibración, beep, ...
-		
-		4.- si el código fuera correcto, 
-		se deshabilitaría el botón de enviar durante cinco minutos 
-		y se haría visible en pantalla el logotipo 
-		o el nombre de la cadena que se está votando.*/
-	
-	
-	class RetreiveFeedTask extends AsyncTask<String, Context, String> {
-
-		String img = null;
-		AlertDialog.Builder alert;
-		public RetreiveFeedTask(String imagen) {
-			this.img = imagen;
-		}
-
-		@Override
-		protected String doInBackground(String... params) {
-			// TODO Auto-generated method stub
-			
-			URL url;
-			try {
-				url = new URL(img);
-			
-	        	HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-	        	conn.connect();
-	        	Bitmap imagenBm = BitmapFactory.decodeStream(conn.getInputStream());
-				
-				LayoutInflater inflater = (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-				View v = inflater.inflate(R.layout.dialog_image, null);
-		    	ImageView iv = (ImageView) v.findViewById(R.id.imagen);
-		    	iv.setImageBitmap(imagenBm);
-		    	alert = new AlertDialog.Builder(c);  
-		        alert.setTitle("Imagen Recibida");  
-		        alert.setView(v);
-				
-				return null;
-			} catch (MalformedURLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			return null;
-		}
-		
-		protected void onPostExecute(String result) {
-			alert.show();
-		}
-		
-		
-	}
-
 	
 
 }

@@ -5,13 +5,11 @@ import org.json.JSONObject;
 
 import android.app.Activity;
 import android.audirt.AudirtService;
-import android.content.Context;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
@@ -21,7 +19,6 @@ import com.clases.Token;
 public class PwdActivity extends Activity {
 	
 	protected static final int DATE_DIALOG_ID = 999;
-	Button fechaNac;
 	
 	private EditText editAntigua;
 	private EditText editNueva;
@@ -35,7 +32,7 @@ public class PwdActivity extends Activity {
 		setContentView(R.layout.cambiopwd);
 		
 		c = this;
-		editAntigua = (EditText) findViewById(R.id.editAntigua);
+		editAntigua = (EditText) findViewById(R.id.editNombre);
 		editNueva = (EditText) findViewById(R.id.editNueva);
 		editRepite = (EditText) findViewById(R.id.EditRepite);
 		botonAceptar = (ImageButton) findViewById(R.id.buttonCambiaPwd);
@@ -47,7 +44,7 @@ public class PwdActivity extends Activity {
 				JSONObject json = new JSONObject();
                 try {
 					json.put("current_password", editAntigua.getText().toString());
-					json.put("password", editAntigua.getText().toString());
+					json.put("password", editNueva.getText().toString());
 					json.put("password_confirmation", editRepite.getText().toString());
 					json.put("auth_token", Token.getToken());
 					
