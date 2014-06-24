@@ -1,25 +1,35 @@
 package com.activity;
 
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+
+import org.apache.http.client.methods.HttpPost;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
-import android.audirt.AudirtService;
+import android.audirt.AudirtGet;
+import android.audirt.AudirtPut;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.audirt.R;
-import com.clases.Token;
+import com.clases.Usuario;
 
 public class RegistroActivity extends Activity {
 
@@ -29,14 +39,12 @@ public class RegistroActivity extends Activity {
 	private int mDay;
 	
 	private EditText editNombre;
-	private EditText edit1Apellido;
-	private EditText edit2Apellido;
-	private EditText editFechaNac;
+	private EditText editApellidos;
 	private EditText editTelefono;
-	private EditText editSexo;
-	private EditText editDireccion;
 	private EditText editCPostal;
 	private EditText editCiudad;
+	private EditText editDireccion;
+	private Spinner sexoSpinner;
 	
 	private ImageButton botonAceptar;
 	
@@ -48,47 +56,59 @@ public class RegistroActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.registroform);
-		
-		c=this;
-		
+				
+		c=this;		
 		getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 		
 		mDateDisplay = (TextView) findViewById(R.id.mDateDisplay);
 		fechaNac=(Button) findViewById(R.id.buttonFechaNac);
 		
 		editNombre = (EditText) findViewById(R.id.editNombre);
-		edit1Apellido = (EditText) findViewById(R.id.Edit1Apellido);
-		edit2Apellido = (EditText) findViewById(R.id.Edit2Apellido);
+		editApellidos = (EditText) findViewById(R.id.Edit1Apellido);
 		editTelefono = (EditText) findViewById(R.id.EditTelefono);
-		editSexo = (EditText) findViewById(R.id.EditSexo);
-		//editDireccion = (EditText) findViewById(R.id.edit);
+		editDireccion = (EditText) findViewById(R.id.EditDireccion);
 		editCPostal = (EditText) findViewById(R.id.EditCodPostal);
 		editCiudad = (EditText) findViewById(R.id.EditCiudad);
+		sexoSpinner = (Spinner) findViewById(R.id.spinnerSexo);
 		
-		//"datos_user"=>{"nombre"=>"Ruben", "apellidos"=>"", "bday"=>"", "telefono"=>"", "sexo"=>"masculino", "direccion"=>"", "cpostal"=>"", "ciudad"=>""}
+		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.sexoArray,android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        sexoSpinner.setAdapter(adapter);
+		
 		botonAceptar = (ImageButton) findViewById(R.id.buttonSign);
 		
 		botonAceptar.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
-				JSONObject json = new JSONObject();
+				JSONObject json = null;
+				JSONObject datos_user = null;
                 try {
+					/*Perfil p = new Perfil(editNombre.getText().toString(), 
+										  editApellidos.getText().toString(), 
+										  mDateDisplay.getText().toString(), 
+										  editTelefono.getText().toString(), 
+										  sexoSpinner.getSelectedItem().toString(), 
+										  "direccion", 
+										  editCPostal.getText().toString(), 
+										  editCiudad.getText().toString());*/
+                	json = new JSONObject();
+                    datos_user = new JSONObject();
 					json.put("nombre", editNombre.getText().toString());
-					json.put("apellidos", new StringBuffer(edit1Apellido.getText().toString()).append(edit2Apellido.getText().toString()));
+					json.put("apellidos", editApellidos.getText().toString());
 					json.put("bday", mDateDisplay.getText().toString());
 					json.put("telefono", editTelefono.getText().toString());
-					json.put("sexo", editSexo.getText().toString());
-					json.put("direccion", "asdassad");
+					json.put("sexo", sexoSpinner.getSelectedItem().toString());
+					json.put("direccion", "direccion");
 					json.put("cpostal", editCPostal.getText().toString());
 					json.put("ciudad", editCiudad.getText().toString());
-					json.put("", Token.getToken());
-					
-				} catch (JSONException ex) {
+					datos_user.put("datos_user", json);
+				} catch (JSONException e) {
 					// TODO Auto-generated catch block
-					ex.printStackTrace();
-				}   
-		        AudirtService aus = new AudirtService("http://audirt.herokuapp.com/users",c, json);
+					e.printStackTrace();
+				}
+				   
+		        AudirtPut aus = new AudirtPut("http://audirt.herokuapp.com/usuarios/"+Usuario.getId()+"?auth_token="+Usuario.getToken(),c, datos_user);
 		        aus.execute();
 			}
 		});
@@ -100,6 +120,9 @@ public class RegistroActivity extends Activity {
                 showDialog(DATE_DIALOG_ID);
             } 
         });
+		
+		AudirtGet aus = new AudirtGet("http://audirt.herokuapp.com/usuarios/"+Usuario.getId()+"?auth_token="+Usuario.getToken(),this);
+		aus.execute();
 	}
 	
 	@Override
@@ -145,6 +168,41 @@ public class RegistroActivity extends Activity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.registro, menu);
 		return true;
+	}
+	
+	public void gestionaGet(String json) {
+		// TODO Auto-generated method stub
+		
+		JSONObject respJSON;
+		try {
+			respJSON = new JSONObject(json);
+			
+			editNombre.setText(respJSON.getString("nombre"));
+			editApellidos.setText(respJSON.getString("apellidos"));
+			mDateDisplay.setText(respJSON.getString("bday"));
+			editTelefono.setText(respJSON.getString("telefono"));
+			for (int i=0; i< sexoSpinner.getCount(); i++){
+				if (sexoSpinner.getItemAtPosition(i).equals(respJSON.getString("sexo"))){
+					sexoSpinner.setSelection(i);
+				}				
+			}
+			editCiudad.setText(respJSON.getString("ciudad"));
+			editCPostal.setText(respJSON.getString("cpostal"));
+			editDireccion.setText(respJSON.getString("direccion"));
+		}
+		catch (JSONException e) {			
+			final AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+			alertDialog.setTitle("Error al recuperar los datos del Usuario");
+			alertDialog.setButton(RESULT_OK, "Aceptar", new DialogInterface.OnClickListener() {
+				
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					// TODO Auto-generated method stub		
+					alertDialog.cancel();
+				}
+			});
+			alertDialog.show();
+		}		
 	}
 
 }

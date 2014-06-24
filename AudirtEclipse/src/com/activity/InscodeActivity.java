@@ -18,7 +18,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.audirt.R;
-import com.clases.Token;
+import com.clases.Usuario;
 
 public class InscodeActivity extends Activity implements OnTouchListener {
 	
@@ -324,7 +324,7 @@ public class InscodeActivity extends Activity implements OnTouchListener {
 					JSONObject json = new JSONObject();
 	                try {
 						json.put("codigo", code.getText().toString());
-						json.put("auth_token", Token.getToken());
+						json.put("auth_token", Usuario.getToken());
 					} catch (JSONException ex) {
 						// TODO Auto-generated catch block
 						ex.printStackTrace();

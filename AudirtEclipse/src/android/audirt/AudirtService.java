@@ -75,8 +75,9 @@ public class AudirtService extends AsyncTask<String, Context, String> {
 	    	httppost.setHeader("Accept-Charset", "utf-8");
 	    	
 	    	StringEntity se = new StringEntity(json.toString());
-	        
+	    	
 	        httppost.setEntity(se);
+	        
 	       
 	        HttpResponse response = httpclient.execute(httppost);
 	        result = EntityUtils.toString(response.getEntity());

@@ -15,7 +15,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 
 import com.audirt.R;
-import com.clases.Token;
+import com.clases.Usuario;
 
 /**
  * Created by david on 8/06/13.
@@ -69,7 +69,7 @@ public class LogIn extends Activity {
 
             public void onClick(View v) {
 
-            	if (Token.getToken() == null){
+            	if (Usuario.getToken() == null){
             		final AlertDialog alertDialog = new AlertDialog.Builder(c).create();
             		alertDialog.setTitle("Debe iniciar sesión");
             		alertDialog.setButton(RESULT_OK, "Aceptar", new DialogInterface.OnClickListener() {    				
@@ -92,7 +92,7 @@ public class LogIn extends Activity {
         	
 			public void onClick(View v) {
 				
-				if (Token.getToken() == null){
+				if (Usuario.getToken() == null){
             		final AlertDialog alertDialog = new AlertDialog.Builder(c).create();
             		alertDialog.setTitle("Debe iniciar sesión");
             		alertDialog.setButton(RESULT_OK, "Aceptar", new DialogInterface.OnClickListener() {    				
@@ -116,9 +116,13 @@ public class LogIn extends Activity {
     	JSONObject respJSON;
 		try {
 			respJSON = new JSONObject(json);
-			Token.setToken(respJSON.getString("token"));
+			Usuario.setToken(respJSON.getString("token"));
+			Usuario.setId(respJSON.getString("idusuario"));
+			Usuario.setPwd(pwd.getText().toString());
+			Usuario.setEmail(email.getText().toString());
 			Intent i = new Intent(LogIn.this, InscodeActivity.class);
             startActivityForResult(i, 1);
+			
 		} catch (JSONException e) {			
 			final AlertDialog alertDialog = new AlertDialog.Builder(this).create();
 			alertDialog.setTitle("Email o contraseña incorrectos");
@@ -132,5 +136,7 @@ public class LogIn extends Activity {
 			});
 			alertDialog.show();
 		}
+		
+		//Recuperar datos Usuario
     }
 }
