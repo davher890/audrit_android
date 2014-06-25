@@ -66,7 +66,7 @@ public class AudirtPut extends AsyncTask<String, Context, String> {
     protected void onPreExecute() {
         dialog = new ProgressDialog(c);
         dialog.setTitle("Audirt");
-        dialog.setMessage("Descargando Datos...");
+        dialog.setMessage("Enviando Datos...");
         dialog.setCancelable(true);
         dialog.setIndeterminate(true);
         dialog.show();

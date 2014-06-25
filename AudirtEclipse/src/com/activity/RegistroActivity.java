@@ -1,10 +1,5 @@
 package com.activity;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-
-import org.apache.http.client.methods.HttpPost;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -71,6 +66,9 @@ public class RegistroActivity extends Activity {
 		editCiudad = (EditText) findViewById(R.id.EditCiudad);
 		sexoSpinner = (Spinner) findViewById(R.id.spinnerSexo);
 		
+		TextView textoHola = (TextView) findViewById(R.id.textHolaUsuario);
+		textoHola.setText("Hola, "+Usuario.getEmail());
+		
 		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.sexoArray,android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sexoSpinner.setAdapter(adapter);
@@ -84,14 +82,6 @@ public class RegistroActivity extends Activity {
 				JSONObject json = null;
 				JSONObject datos_user = null;
                 try {
-					/*Perfil p = new Perfil(editNombre.getText().toString(), 
-										  editApellidos.getText().toString(), 
-										  mDateDisplay.getText().toString(), 
-										  editTelefono.getText().toString(), 
-										  sexoSpinner.getSelectedItem().toString(), 
-										  "direccion", 
-										  editCPostal.getText().toString(), 
-										  editCiudad.getText().toString());*/
                 	json = new JSONObject();
                     datos_user = new JSONObject();
 					json.put("nombre", editNombre.getText().toString());

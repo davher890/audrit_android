@@ -43,13 +43,6 @@ public class AudirtGet extends AsyncTask<String, Context, String> {
 	    	httpget.setHeader("Accept", "application/json");
 	    	httpget.setHeader("Content-Type", "application/json");
 	    	httpget.setHeader("Accept-Charset", "utf-8");
-	       
-	    	/*JSONObject json = new JSONObject();
-	    	json.put("auth_token", Usuario.getToken());*/
-	    	
-	    	/*HttpParams parametros = httpget.getParams() ;
-	    	parametros.setParameter(
-			httpget.setParams(parametros);*/
 			
 	        HttpResponse response = httpclient.execute(httpget);
 	        result = EntityUtils.toString(response.getEntity());
