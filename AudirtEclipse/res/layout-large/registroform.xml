@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fondo"
+    android:baselineAligned="false"
+    android:orientation="vertical" >
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="20dp"
+            android:columnCount="3"
+            android:rowCount="17" >
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:layout_columnSpan="3"
+                android:layout_gravity="left"
+                android:layout_row="0"
+                android:adjustViewBounds="true"
+                android:src="@drawable/logo" />
+
+            <TextView
+                android:id="@+id/textHolaUsuario"
+                android:layout_column="0"
+                android:layout_columnSpan="1"
+                android:layout_gravity="left"
+                android:layout_marginTop="5dp"
+                android:layout_row="1"
+                android:text="TextView"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/textPerfil"
+                android:layout_column="1"
+                android:layout_columnSpan="2"
+                android:layout_gravity="right"
+                android:layout_marginTop="5dp"
+                android:layout_row="1"
+                android:text="Perfil"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="#ffffff"
+                android:textSize="30sp" />
+
+            <TextView
+                android:id="@+id/linea3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:layout_columnSpan="3"
+                android:layout_gravity="left"
+                android:layout_marginTop="10dp"
+                android:layout_row="3"
+                android:background="@drawable/linea_naranja" />
+
+            <TextView
+                android:id="@+id/textAntigua"
+                android:layout_column="0"
+                android:layout_columnSpan="3"
+                android:layout_gravity="left"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_row="4"
+                android:text="Nombre"
+                android:textColor="#ffffff"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/editNombre"
+                android:layout_column="0"
+                android:layout_columnSpan="3"
+                android:layout_gravity="fill_horizontal"
+                android:layout_row="5"
+                android:ems="10"
+                android:textColor="#ffffff"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/TextApellidos"
+                android:layout_column="0"
+                android:layout_columnSpan="3"
+                android:layout_gravity="left"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_row="6"
+                android:text="Apellidos"
+                android:textColor="#ffffff"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/Edit1Apellido"
+                android:layout_column="0"
+                android:layout_columnSpan="3"
+                android:layout_gravity="fill_horizontal"
+                android:layout_row="7"
+                android:ems="10" 
+                android:textColor="#ffffff"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/TextBDay"
+                android:layout_column="0"
+                android:layout_columnSpan="3"
+                android:layout_gravity="left"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_row="8"
+                android:text="Fecha de Nacimiento*"
+                android:textColor="#ffffff"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/mDateDisplay"
+                android:layout_column="0"
+                android:layout_columnSpan="1"
+                android:layout_gravity="fill_horizontal"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_row="9"
+                android:textColor="#ffffff"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
+
+            <Button
+                android:id="@+id/buttonFechaNac"
+                android:layout_column="0"
+                android:layout_columnSpan="3"
+                android:layout_gravity="right"
+                android:layout_row="9"
+                android:text="Selecciona Fecha" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:layout_columnSpan="3"
+                android:layout_gravity="fill_horizontal"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_row="10" >
+
+                <TextView
+                    android:id="@+id/TextTelefono"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Teléfono"
+                    android:textColor="#ffffff"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/TextSexo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Sexo*"
+                    android:textColor="#ffffff"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:layout_columnSpan="3"
+                android:layout_gravity="fill_horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_row="11" >
+
+                <EditText
+                    android:id="@+id/EditTelefono"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:textColor="#ffffff"
+	                android:textSize="20sp"
+	                android:textStyle="bold" />
+
+                <Spinner
+                    android:id="@+id/spinnerSexo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:layout_columnSpan="3"
+                android:layout_gravity="fill_horizontal"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_row="12" >
+
+                <TextView
+                    android:id="@+id/TextCiudad"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Ciudad"
+                    android:textColor="#ffffff"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/TextCodPostal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Código Postal"
+                    android:textColor="#ffffff"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:layout_columnSpan="3"
+                android:layout_gravity="fill_horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_row="13" >
+
+                <EditText
+                    android:id="@+id/EditCiudad"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:textColor="#ffffff"
+	                android:textSize="20sp"
+	                android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/EditCodPostal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:textColor="#ffffff"
+	                android:textSize="20sp"
+	                android:textStyle="bold" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/TextDireccion"
+                android:layout_column="0"
+                android:layout_columnSpan="3"
+                android:layout_gravity="left"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_row="14"
+                android:text="Dirección*"
+                android:textColor="#ffffff"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/EditDireccion"
+                android:layout_column="0"
+                android:layout_columnSpan="3"
+                android:layout_gravity="fill_horizontal"
+                android:layout_row="15"
+                android:ems="10"
+                android:textColor="#ffffff"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <ImageButton
+                android:id="@+id/buttonSign"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:layout_columnSpan="3"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                android:layout_row="16"
+                android:adjustViewBounds="true"
+                android:baselineAlignBottom="false"
+                android:cropToPadding="false"
+                android:scaleType="fitXY"
+                android:src="@drawable/boton_enviar" />
+
+        </GridLayout>
+
+    </ScrollView>
+
+</LinearLayout>

@@ -5,6 +5,7 @@ import org.json.JSONObject;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.audirt.AudirtService;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -345,14 +346,14 @@ public class InscodeActivity extends Activity implements OnTouchListener {
 			code.setText(code.getText().toString()+digit);
 	}
 	
-	public void introduceBBDD(String json) {
+	public void introduceBBDD(String json, ProgressDialog dialog) {
         JSONObject respJSON;
 		try {
 			respJSON = new JSONObject(json);
 	        status = respJSON.getString("status");
 	        tiempo = respJSON.getString("tiempo");
 	        imagen = respJSON.getString("imagen");
-	        
+
 	        if (Integer.parseInt(status) == 1 /*&& Long.parseLong(tiempo.replace('.', ',')) > 0*/){
 	        	code.setTextColor(Color.RED);
 	        	envia = false;
@@ -367,7 +368,7 @@ public class InscodeActivity extends Activity implements OnTouchListener {
 	        		}
 	        	};
 	        	timer.start();
-	        	RetreiveFeedTask aus = new RetreiveFeedTask(c, imagen);
+	        	RetreiveFeedTask aus = new RetreiveFeedTask(c, imagen, dialog);
 	        	aus.execute();
 	        }
 		} catch (JSONException e) {
@@ -384,6 +385,4 @@ public class InscodeActivity extends Activity implements OnTouchListener {
 			alertDialog.show();
 		}
     }
-	
-
 }

@@ -77,7 +77,6 @@ public class AudirtService extends AsyncTask<String, Context, String> {
 	    	StringEntity se = new StringEntity(json.toString());
 	    	
 	        httppost.setEntity(se);
-	        
 	       
 	        HttpResponse response = httpclient.execute(httppost);
 	        result = EntityUtils.toString(response.getEntity());
@@ -106,13 +105,15 @@ public class AudirtService extends AsyncTask<String, Context, String> {
     }
 
     protected void onPostExecute(String result) {
-        dialog.cancel();
         System.out.println(result);
         
-        if (log != null)
-        	log.gestionaWS(result);
+        if (log != null){
+        	dialog.cancel();
+        	log.gestionaWS(result);        	
+        }
         
-        if (ins != null)
-        	ins.introduceBBDD(result);       
+        if (ins != null){        	
+        	ins.introduceBBDD(result, dialog);
+        }
     }
 }

@@ -6,6 +6,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -21,10 +22,12 @@ class RetreiveFeedTask extends AsyncTask<String, Context, String> {
 
 	String img = null;
 	Context c = null;
+	ProgressDialog dialog;
 	AlertDialog.Builder alert;
-	public RetreiveFeedTask(Context c, String imagen) {
+	public RetreiveFeedTask(Context c, String imagen, ProgressDialog dialog) {
 		this.img = imagen;
 		this.c = c;
+		this.dialog = dialog;
 	}
 
 	@Override
@@ -42,9 +45,14 @@ class RetreiveFeedTask extends AsyncTask<String, Context, String> {
 			LayoutInflater inflater = (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			View v = inflater.inflate(R.layout.dialog_image, null);
 	    	ImageView iv = (ImageView) v.findViewById(R.id.imagen);
-	    	iv.setImageBitmap(imagenBm);
+	    	String titulo = "Código recibido"; 
+	    	if (imagenBm != null){
+	    		iv.setImageBitmap(imagenBm);
+	    		titulo = "Imagen recibida";	    		
+	    	}
+	    		
 	    	alert = new AlertDialog.Builder(c);  
-	        alert.setTitle("Imagen Recibida");  
+	        alert.setTitle(titulo);  
 	        alert.setView(v);
 			
 			return null;
@@ -59,6 +67,7 @@ class RetreiveFeedTask extends AsyncTask<String, Context, String> {
 	}
 	
 	protected void onPostExecute(String result) {
+		dialog.cancel();
 		alert.show();
 	}	
 }
